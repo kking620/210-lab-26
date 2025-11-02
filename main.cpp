@@ -86,7 +86,7 @@ int main() {
         //outputs the container types, as well as the time it took each of the code blocks to complete populating their containers
         cout << "Operation" << setw(15) << "Vector" << setw(15) << "List" << setw(15) << "Set\n";
         cout << "Read" << setw(20) << vDuration1.count() << setw(16) << lDuration1.count() << setw(15) << sDuration1.count() << endl;
-        
+
         auto vStart2 = high_resolution_clock::now();
 
         //calls the sort function, which automatically sorts the vector from the beginning to the end of the vector
@@ -94,6 +94,9 @@ int main() {
 
         auto vEnd2 = high_resolution_clock::now();
         auto vDuration2 = duration_cast<microseconds>(vEnd2 - vStart2);
+
+        olympicDataSet[0][1][0] = vDuration2.count();
+        olympicDataSet[1][1][0] += olympicDataSet[0][1][0];
 
         auto lStart2 = high_resolution_clock::now();
 
@@ -103,8 +106,14 @@ int main() {
         auto lEnd2 = high_resolution_clock::now();
         auto lDuration2 = duration_cast<microseconds>(lEnd2 - lStart2);
 
+        olympicDataSet[0][1][1] = lDuration2.count();
+        olympicDataSet[1][1][1] += olympicDataSet[0][1][1];
+
         //sets the duration to negative one, because the set already sorts itself without having to call a separate function
         int sDuration2 = -1;
+
+        olympicDataSet[0][1][2] = sDuration2;
+        olympicDataSet[1][1][2] += olympicDataSet[0][1][2];
 
         //outputs how quickly each class container can sort its contents
         cout << "Sort" << setw(20) << vDuration2.count() << setw(16) << lDuration2.count() << setw(15) << sDuration2 << endl;
@@ -117,6 +126,9 @@ int main() {
         auto vEnd3 = high_resolution_clock::now();
         auto vDuration3 = duration_cast<microseconds>(vEnd3 - vStart3);
 
+        olympicDataSet[0][2][0] = vDuration3.count();
+        olympicDataSet[1][2][0] += olympicDataSet[0][2][0];
+
         auto lStart3 = high_resolution_clock::now();
 
         //using an interator, we use the advance command to traverse the list until our dedired position within the list
@@ -128,6 +140,9 @@ int main() {
         auto lEnd3 = high_resolution_clock::now();
         auto lDuration3 = duration_cast<microseconds>(lEnd3 - lStart3);
 
+        olympicDataSet[0][2][1] = lDuration3.count();
+        olympicDataSet[1][2][1] += olympicDataSet[0][2][1];
+
         auto sStart3 = high_resolution_clock::now();
 
         //inputs the given string into the set
@@ -135,6 +150,9 @@ int main() {
 
         auto sEnd3 = high_resolution_clock::now();
         auto sDuration3 = duration_cast<microseconds>(sEnd3 - sStart3);
+
+        olympicDataSet[0][2][2] = sDuration3.count();
+        olympicDataSet[1][2][2] += olympicDataSet[0][2][2];
 
         //outputs how quickly each container could input a desired string into the middle of the vector and list and simply into the set as it automatically sorts the objects within the set
         cout << "Insert" << setw(17) << vDuration3.count() << setw(16) << lDuration3.count() << setw(15) << sDuration3.count() << endl;
@@ -147,6 +165,9 @@ int main() {
         auto vEnd4 = high_resolution_clock::now();
         auto vDuration4 = duration_cast<microseconds>(vEnd4 - vStart4);
 
+        olympicDataSet[0][3][0] = vDuration4.count();
+        olympicDataSet[1][3][0] += olympicDataSet[0][3][0];
+
         auto lStart4 = high_resolution_clock::now();
 
         //using an iterator, we traverse to the desired location of the list using the advance function
@@ -157,6 +178,9 @@ int main() {
 
         auto lEnd4 = high_resolution_clock::now();
         auto lDuration4 = duration_cast<microseconds>(lEnd4 - lStart4);
+
+        olympicDataSet[0][3][1] = lDuration4.count();
+        olympicDataSet[1][3][1] += olympicDataSet[0][3][1];
 
         auto sStart4 = high_resolution_clock::now();
 
@@ -169,9 +193,15 @@ int main() {
         auto sEnd4 = high_resolution_clock::now();
         auto sDuration4 = duration_cast<microseconds>(sEnd4 - sStart4);
 
+        olympicDataSet[0][3][2] = lDuration4.count();
+        olympicDataSet[1][3][2] += olympicDataSet[0][3][2];
+
         //outputs how quickly each container can delete the value at the desired location
         cout << "Delete" << setw(17) << vDuration4.count() << setw(16) << lDuration4.count() << setw(15) << sDuration4.count() << endl;
     }
+
+    
+        
     return 0;
 }
 
