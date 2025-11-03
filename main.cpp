@@ -18,7 +18,7 @@ const int DEPTH = 2;
 const int SAMPLERUNS = 15;
 
 int main() {
-    int olympicDataSet[DEPTH][NROWS][NCOLS];
+    int olympicDataSet[DEPTH][NROWS][NCOLS] {0, 0, 0};
     
     for (int i = 0; i < SAMPLERUNS; i++) {
         //opens the external file containing the codes we will be importing into our vector, list, and sets
@@ -167,7 +167,7 @@ int main() {
 
         auto lEnd4 = high_resolution_clock::now();
         auto lDuration4 = duration_cast<microseconds>(lEnd4 - lStart4);
-
+        
         olympicDataSet[0][3][1] = lDuration4.count();
         olympicDataSet[1][3][1] += olympicDataSet[0][3][1];
 
