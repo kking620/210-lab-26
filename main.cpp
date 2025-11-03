@@ -18,7 +18,6 @@ const int DEPTH = 2;
 const int SAMPLERUNS = 15;
 
 int main() {
-    int nSampleRuns = 0;
     int olympicDataSet[DEPTH][NROWS][NCOLS];
     
     for (int i = 0; i < SAMPLERUNS; i++) {
@@ -83,10 +82,6 @@ int main() {
         olympicDataSet[0][0][2] = sDuration1.count();
         olympicDataSet[1][0][2] += olympicDataSet[0][0][2];
 
-        //outputs the container types, as well as the time it took each of the code blocks to complete populating their containers
-        cout << "Operation" << setw(15) << "Vector" << setw(15) << "List" << setw(15) << "Set\n";
-        cout << "Read" << setw(20) << vDuration1.count() << setw(16) << lDuration1.count() << setw(15) << sDuration1.count() << endl;
-
         auto vStart2 = high_resolution_clock::now();
 
         //calls the sort function, which automatically sorts the vector from the beginning to the end of the vector
@@ -114,9 +109,6 @@ int main() {
 
         olympicDataSet[0][1][2] = sDuration2;
         olympicDataSet[1][1][2] += olympicDataSet[0][1][2];
-
-        //outputs how quickly each class container can sort its contents
-        cout << "Sort" << setw(20) << vDuration2.count() << setw(16) << lDuration2.count() << setw(15) << sDuration2 << endl;
 
         auto vStart3 = high_resolution_clock::now();
 
@@ -153,9 +145,6 @@ int main() {
 
         olympicDataSet[0][2][2] = sDuration3.count();
         olympicDataSet[1][2][2] += olympicDataSet[0][2][2];
-
-        //outputs how quickly each container could input a desired string into the middle of the vector and list and simply into the set as it automatically sorts the objects within the set
-        cout << "Insert" << setw(17) << vDuration3.count() << setw(16) << lDuration3.count() << setw(15) << sDuration3.count() << endl;
 
         auto vStart4 = high_resolution_clock::now();
 
@@ -195,13 +184,38 @@ int main() {
 
         olympicDataSet[0][3][2] = lDuration4.count();
         olympicDataSet[1][3][2] += olympicDataSet[0][3][2];
-
-        //outputs how quickly each container can delete the value at the desired location
-        cout << "Delete" << setw(17) << vDuration4.count() << setw(16) << lDuration4.count() << setw(15) << sDuration4.count() << endl;
+    }
+ 
+    for (int i = 0; i < NROWS; i++) {
+        for (int j = 0; j < NCOLS; j++) {
+            olympicDataSet [1][i][j] = olympicDataSet [1][i][j]/SAMPLERUNS;
+        }
     }
 
-    
-        
+    cout << "Number of simulations: " << SAMPLERUNS << endl;
+
+    //outputs the container types, as well as the time it took each of the code blocks to complete populating their containers
+    cout << "Operation" << setw(15) << "Vector" << setw(15) << "List" << setw(15) << "Set\n";
+    cout << "Read" << setw(15);
+    for (int j = 0; j < NCOLS; j++) {
+            cout << olympicDataSet[1][0][j] << setw(15) << " ";
+    }
+    cout << endl;
+    cout << "Sort" << setw(15);
+    for (int j = 0; j < NCOLS; j++) {
+            cout << olympicDataSet[1][1][j] << setw(15) << " ";
+    }
+    cout << endl;
+    cout << "Insert" << setw(15);
+    for (int j = 0; j < NCOLS; j++) {
+            cout << olympicDataSet[1][2][j] << setw(15) << " ";
+    }
+    cout << endl;
+    cout << "Delete" << setw(15);
+    for (int j = 0; j < NCOLS; j++) {
+            cout << olympicDataSet[1][3][j] << setw(15) << " ";
+    }
+    cout << endl;
     return 0;
 }
 
