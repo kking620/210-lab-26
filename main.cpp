@@ -1,3 +1,5 @@
+//COMSC-210 | Lab 26 | Kristofer King
+//IDE Used: VSC
 #include <iostream>
 #include <iomanip>
 #include <algorithm>
@@ -11,15 +13,19 @@
 using namespace std;
 using namespace std::chrono;
 
+//declaring and initializing the depth, number of columns and number of rows within our 3D array
 const int NROWS = 4;
 const int NCOLS = 3;
 const int DEPTH = 2;
 
+//declaring and initializing the number of sample runs we will be performing in this program
 const int SAMPLERUNS = 15;
 
 int main() {
+    //declaring and initializing our 3D array with our designated size variables with value 0
     int olympicDataSet[DEPTH][NROWS][NCOLS] {0, 0, 0};
     
+    //for loop that continuously runs until we reach our designated number of sample runs
     for (int i = 0; i < SAMPLERUNS; i++) {
         //opens the external file containing the codes we will be importing into our vector, list, and sets
         ifstream vFin("codes.txt");
@@ -40,8 +46,11 @@ int main() {
         //closes the input file
         vFin.close();
 
+        //places the integer value of our time in the current run array, as denoted by the 0 in the depth section
         olympicDataSet[0][0][0] = vDuration1.count();
+        //adds the value from the current run array into our accumulated array, as denoted by the 1 in the depth section 
         olympicDataSet[1][0][0] += olympicDataSet[0][0][0];
+        //this pattern of obtaining the current run sample and added to the accumulated array will be repeated throughout the program
 
         ifstream lFin("codes.txt");
         //using the chrono library, marks the starting time at which we start this code block 
@@ -186,6 +195,7 @@ int main() {
         olympicDataSet[1][3][2] += olympicDataSet[0][3][2];
     }
  
+    //for loop that divides the accumulated value for each container type and task performed by the number of sample runs in order to find the average
     for (int i = 0; i < NROWS; i++) {
         for (int j = 0; j < NCOLS; j++) {
             olympicDataSet [1][i][j] = olympicDataSet [1][i][j]/SAMPLERUNS;
@@ -196,24 +206,29 @@ int main() {
 
     //outputs the container types, as well as the time it took each of the code blocks to complete populating their containers
     cout << "Operation" << setw(15) << "Vector" << setw(15) << "List" << setw(15) << "Set\n";
+    
     cout << "Read" << setw(18);
+    //for loop that continuously outputs the values in the first row until we have reached the maximum number of columns
     for (int j = 0; j < NCOLS; j++) {
             cout << olympicDataSet[1][0][j] << "           ";
     }
     cout << endl;
 
+    //for loop that continuously outputs the values in the second row until we have reached the maximum number of columns
     cout << "Sort" << setw(18);
     for (int j = 0; j < NCOLS; j++) {
             cout << olympicDataSet[1][1][j] << "            ";
     }
     cout << endl;
 
+    //for loop that continuously outputs the values in the third row until we have reached the maximum number of columns
     cout << "Insert" << setw(15);
     for (int j = 0; j < NCOLS; j++) {
             cout << olympicDataSet[1][2][j] << "              ";
     }
     cout << endl;
     
+    //for loop that continuously outputs the values in the fourth row until we have reached the maximum number of columns
     cout << "Delete" << setw(15);
     for (int j = 0; j < NCOLS; j++) {
             cout << olympicDataSet[1][3][j] << "             ";
