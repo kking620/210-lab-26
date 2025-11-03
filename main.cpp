@@ -182,7 +182,7 @@ int main() {
         auto sEnd4 = high_resolution_clock::now();
         auto sDuration4 = duration_cast<microseconds>(sEnd4 - sStart4);
 
-        olympicDataSet[0][3][2] = lDuration4.count();
+        olympicDataSet[0][3][2] = sDuration4.count();
         olympicDataSet[1][3][2] += olympicDataSet[0][3][2];
     }
  
@@ -196,14 +196,14 @@ int main() {
 
     //outputs the container types, as well as the time it took each of the code blocks to complete populating their containers
     cout << "Operation" << setw(15) << "Vector" << setw(15) << "List" << setw(15) << "Set\n";
-    cout << "Read" << setw(15);
+    cout << "Read" << setw(18);
     for (int j = 0; j < NCOLS; j++) {
-            cout << olympicDataSet[1][0][j] << setw(15) << " ";
+            cout << olympicDataSet[1][0][j] << setw(10) << " ";
     }
     cout << endl;
-    cout << "Sort" << setw(15);
+    cout << "Sort" << setw(18);
     for (int j = 0; j < NCOLS; j++) {
-            cout << olympicDataSet[1][1][j] << setw(15) << " ";
+            cout << olympicDataSet[1][1][j] << setw(10) << " ";
     }
     cout << endl;
     cout << "Insert" << setw(15);
@@ -213,7 +213,7 @@ int main() {
     cout << endl;
     cout << "Delete" << setw(15);
     for (int j = 0; j < NCOLS; j++) {
-            cout << olympicDataSet[1][3][j] << setw(15) << " ";
+            cout << olympicDataSet[1][3][j] << setw(10) << " ";
     }
     cout << endl;
     return 0;
